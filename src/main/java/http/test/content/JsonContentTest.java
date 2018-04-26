@@ -1,6 +1,6 @@
 package http.test.content;
 
-import http.HttpServer;
+import http.server.HttpServer;
 
 public class JsonContentTest {
 	public static void main(String[] args) {

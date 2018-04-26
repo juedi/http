@@ -1,6 +1,6 @@
 package http.test.status;
 
-import http.HttpServer;
+import http.server.HttpServer;
 
 public class HttpStatusCode400Test {
 	

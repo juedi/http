@@ -1,6 +1,6 @@
 package http.test.keepalive;
 
-import http.HttpServer;
+import http.server.HttpServer;
 
 public class TransferEncodingTest {
 

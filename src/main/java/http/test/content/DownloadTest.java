@@ -5,10 +5,9 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-import http.HttpServer;
+import http.server.HttpServer;
 
 public class DownloadTest {
-	private static final String WEB_ROOT = "D:\\code\\javaee\\http\\http\\index.html";
 	
 	public static void main(String[] args) throws IOException {
 		String headerString = "HTTP/1.1 200 OK\r\n"
@@ -20,7 +19,7 @@ public class DownloadTest {
 		byte[] header = headerString.getBytes("utf-8");
 		
 		//静态资源
-		File file = new File(WEB_ROOT);
+		File file = new File(StaticResourceTest.class.getClassLoader().getResource("index.html").getFile());
 		byte[] body = FileUtils.readFileToByteArray(file);
 		
 		

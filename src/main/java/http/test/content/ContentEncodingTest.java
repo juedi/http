@@ -2,7 +2,7 @@ package http.test.content;
 
 import java.io.UnsupportedEncodingException;
 
-import http.HttpServer;
+import http.server.HttpServer;
 import http.util.GzipUtils;
 
 public class ContentEncodingTest {
@@ -24,7 +24,7 @@ public class ContentEncodingTest {
 		byte[] rsp = merge(header, body);
 		
 		//打印下响应信息
-		System.out.println(new String(rsp));
+//		System.out.println(new String(rsp));
 		
 		HttpServer server = new HttpServer(rsp);
 		server.start();

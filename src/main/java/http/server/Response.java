@@ -1,4 +1,4 @@
-package http;
+package http.server;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,6 +23,8 @@ public class Response {
 		if(request.getUri().contains("user")) {
 			String json = "HTTP/1.1 200 OK\r\n"
 					+ "Content-Type: application/json;charset=utf-8\r\n"
+					+ "Content-Length: 33\r\n"
+					+ "Connection: keep-alive\r\n"
 					+ "\r\n" 
 					+ "{\"name\": \"Eric\", \"gender\": \"男\"}";
 			output.write(json.getBytes());

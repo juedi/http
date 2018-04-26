@@ -1,4 +1,4 @@
-package http;
+package http.server;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,9 +26,9 @@ public class Request {
 		}
 		uri = parseUri(request.toString());
 
-		System.out.println("-----------------");
-		System.out.print(request.toString());
-		System.out.println("-----------------");
+		System.out.println("--------request start---------");
+		System.out.println(request.toString());
+		System.out.println("--------request end---------");
 	}
 
 	private String parseUri(String requestString) {

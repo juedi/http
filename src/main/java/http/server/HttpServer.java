@@ -1,4 +1,4 @@
-package http;
+package http.server;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,8 +10,6 @@ import java.net.Socket;
 public class HttpServer {
 
 	private boolean shutdown = false;
-
-	private int linkNum = 0;
 
 	// http响应内容
 	private Object rsp;
@@ -36,9 +34,10 @@ public class HttpServer {
 			try {
 
 				socket = serverSocket.accept();
-				System.out.println("the client port is:" + socket.getPort());
+				
 				new Thread(new HandleThread(socket, this.rsp)).start();
 
+				System.out.println("the client port is:" + socket.getPort());
 			} catch (Exception e) {
 				e.printStackTrace();
 				try {
@@ -70,16 +69,19 @@ public class HttpServer {
 				output = socket.getOutputStream();
 				// 输入流创建一个request
 				Request request = new Request(input);
-				request.parse();
-				// 输出流创建一个response
-				Response response = new Response(output);
-				response.setRequest(request);
-
-				response.send(this.rsp);
-
-				// response.sendStaticResource();
-				 socket.close();
+				while(!stop) {
+					request.parse();
+					// 输出流创建一个response
+					Response response = new Response(output);
+					response.setRequest(request);
+	
+					response.send(this.rsp);
+					
+					stop = true;
+					socket.close();
+				}
 			} catch (Exception e) {
+				stop = true;
 				e.printStackTrace();
 				try {
 					socket.close();
@@ -90,13 +92,4 @@ public class HttpServer {
 		}
 	}
 
-	// private void addLinkNum() {
-	// linkNum++;
-	// System.out.println("+当前链接个数" + linkNum);
-	// }
-	//
-	// private void subLinkNum() {
-	// linkNum--;
-	// System.out.println("-当前链接个数" + linkNum);
-	// }
 }
